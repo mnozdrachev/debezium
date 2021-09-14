@@ -369,13 +369,14 @@ public class TableSchemaBuilder {
                 fieldBuilder.optional();
             }
 
+            Object def = column.defaultValue();
             LOGGER.info(">>> addFiled:"
                     + " table.id=" + table.id()
                     + " column=" + column.name()
                     + " column.hasDefaultValue=" + column.hasDefaultValue()
                     + " column.defaultValue=" + column.defaultValue()
                     + " column.type=" + fieldBuilder.type()
-                    + " default.type=" + column.defaultValue().getClass().getName()
+                    + " default.type=" + def.getClass().getName()
                     + " isinstance=" + Byte.class.isInstance(column.defaultValue())
             );
 
