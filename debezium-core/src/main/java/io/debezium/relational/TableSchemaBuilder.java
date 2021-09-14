@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
+import java.util.Objects;
 
 import org.apache.kafka.connect.data.Field;
 import org.apache.kafka.connect.data.Schema;
@@ -368,16 +369,18 @@ public class TableSchemaBuilder {
                 fieldBuilder.optional();
             }
 
-            String convetedDefault = String.valueOf(customConverterRegistry
-                .getValueConverter(table.id(), column)
-                .orElse(ValueConverter.passthrough())
-                .convert(column.defaultValue()));
+            String convetedDefault = Objects.toString(
+                customConverterRegistry
+                    .getValueConverter(table.id(), column)
+                    .orElse(ValueConverter.passthrough())
+                    .convert(column.defaultValue()),
+                "null");
             LOGGER.info(">>> addFiled:"
                     + " table.id=" + table.id()
                     + " column=" + column.name()
                     + " column.hasDefaultValue=" + column.hasDefaultValue()
                     + " column.defaultValue=" + column.defaultValue()
-                    + " converted default value=" + convetedDefault
+                    + " converted-default-value=" + convetedDefault
                     + " converter=" + customConverterRegistry.getValueConverter(table.id(), column)
                     + " orelse converter=" + ValueConverter.passthrough()
             );
