@@ -64,7 +64,7 @@ public class OracleDatabaseSchema extends HistorizedRelationalDatabaseSchema {
 
     @Override
     public void applySchemaChange(SchemaChangeEvent schemaChange) {
-        LOGGER.debug("Applying schema change event {}", schemaChange);
+        LOGGER.info("Applying schema change event {}", schemaChange);
 
         switch (schemaChange.getType()) {
             case CREATE:
