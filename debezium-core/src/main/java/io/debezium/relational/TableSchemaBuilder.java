@@ -368,10 +368,10 @@ public class TableSchemaBuilder {
                 fieldBuilder.optional();
             }
 
-            String convetedDefault = customConverterRegistry
+            String convetedDefault = String.valueOf(customConverterRegistry
                 .getValueConverter(table.id(), column)
                 .orElse(ValueConverter.passthrough())
-                .convert(column.defaultValue()).toString();
+                .convert(column.defaultValue()));
             LOGGER.info(">>> addFiled:"
                     + " table.id=" + table.id()
                     + " column=" + column.name()
