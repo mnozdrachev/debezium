@@ -369,30 +369,32 @@ public class TableSchemaBuilder {
                 fieldBuilder.optional();
             }
 
-            Object def = column.defaultValue();
-            Object def2 = customConverterRegistry
-                .getValueConverter(table.id(), column)
-                .orElse(ValueConverter.passthrough())
-                .convert(column.defaultValue())
-            ;
-            LOGGER.info(">>> addFiled:"
-                    + " def=" + def
-                    + " def2=" + def2
-            );
-            LOGGER.info(">>> addFiled:"
-                    + " def=" + def.getClass()
-                    + " def2=" + def2.getClass()
-            );
-            LOGGER.info(">>> addFiled:"
-                    + " table.id=" + table.id()
-                    + " column=" + column.name()
-                    + " column.hasDefaultValue=" + column.hasDefaultValue()
-                    + " column.defaultValue=" + column.defaultValue()
-                    + " column.type=" + fieldBuilder.type()
-                    + " default-type=" + def.getClass().getName()
-                    + " converted-default-type=" + def2.getClass().getName()
-                    + " isinstance=" + Byte.class.isInstance(column.defaultValue())
-            );
+            if (column.hasDefaultValue()) {
+                Object def = column.defaultValue();
+                Object def2 = customConverterRegistry
+                    .getValueConverter(table.id(), column)
+                    .orElse(ValueConverter.passthrough())
+                    .convert(column.defaultValue())
+                ;
+                LOGGER.info(">>> addFiled:"
+                        + " table.id=" + table.id()
+                        + " column=" + column.name()
+                        + " column.hasDefaultValue=" + column.hasDefaultValue()
+                        + " column.defaultValue=" + column.defaultValue()
+                        + " column.type=" + fieldBuilder.type()
+                        + " default-type=" + def.getClass().getName()
+                        + " converted-default-type=" + def2.getClass().getName()
+                        + " isinstance=" + Byte.class.isInstance(column.defaultValue())
+                );
+            } else {
+                LOGGER.info(">>> addFiled:"
+                        + " table.id=" + table.id()
+                        + " column=" + column.name()
+                        + " column.hasDefaultValue=" + column.hasDefaultValue()
+                        + " column.defaultValue=" + column.defaultValue()
+                        + " column.type=" + fieldBuilder.type()
+                );
+            }
 
             // if the default value is provided
             if (column.hasDefaultValue()) {
