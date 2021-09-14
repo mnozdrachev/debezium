@@ -368,11 +368,18 @@ public class TableSchemaBuilder {
                 fieldBuilder.optional();
             }
 
+            String convetedDefault = customConverterRegistry
+                .getValueConverter(table.id(), column)
+                .orElse(ValueConverter.passthrough())
+                .convert(column.defaultValue()).toString();
             LOGGER.info(">>> addFiled:"
                     + " table.id=" + table.id()
                     + " column=" + column.name()
                     + " column.hasDefaultValue=" + column.hasDefaultValue()
                     + " column.defaultValue=" + column.defaultValue()
+                    + " converted default value=" + convetedDefault
+                    + " converter=" + customConverterRegistry.getValueConverter(table.id(), column)
+                    + " orelse converter=" + ValueConverter.passthrough()
             );
 
             // if the default value is provided
