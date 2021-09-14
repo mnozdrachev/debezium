@@ -376,6 +376,14 @@ public class TableSchemaBuilder {
                 .convert(column.defaultValue())
             ;
             LOGGER.info(">>> addFiled:"
+                    + " def=" + def
+                    + " def2=" + def2
+            );
+            LOGGER.info(">>> addFiled:"
+                    + " def=" + def.getClass()
+                    + " def2=" + def2.getClass()
+            );
+            LOGGER.info(">>> addFiled:"
                     + " table.id=" + table.id()
                     + " column=" + column.name()
                     + " column.hasDefaultValue=" + column.hasDefaultValue()
