@@ -369,7 +369,7 @@ public class TableSchemaBuilder {
                 fieldBuilder.optional();
             }
 
-            if (column.hasDefaultValue()) {
+            if (column.hasDefaultValue() && column.defaultValue() != null) {
                 Object def = column.defaultValue();
                 Object def2 = customConverterRegistry
                     .getValueConverter(table.id(), column)
