@@ -373,7 +373,7 @@ public class TableSchemaBuilder {
                     + " column=" + column.name()
                     + " column.hasDefaultValue=" + column.hasDefaultValue()
                     + " column.defaultValue=" + column.defaultValue()
-            )
+            );
 
             // if the default value is provided
             if (column.hasDefaultValue()) {
