@@ -368,6 +368,13 @@ public class TableSchemaBuilder {
                 fieldBuilder.optional();
             }
 
+            LOGGER.info(">>> addFiled:"
+                    + " table.id=" + table.id()
+                    + " column=" + column.name()
+                    + " column.hasDefaultValue=" + column.hasDefaultValue()
+                    + " column.defaultValue=" + column.defaultValue()
+            );
+
             // if the default value is provided
             if (column.hasDefaultValue()) {
                 fieldBuilder
