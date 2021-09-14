@@ -369,20 +369,14 @@ public class TableSchemaBuilder {
                 fieldBuilder.optional();
             }
 
-            String convetedDefault = Objects.toString(
-                customConverterRegistry
-                    .getValueConverter(table.id(), column)
-                    .orElse(ValueConverter.passthrough())
-                    .convert(column.defaultValue()),
-                "null");
             LOGGER.info(">>> addFiled:"
                     + " table.id=" + table.id()
                     + " column=" + column.name()
                     + " column.hasDefaultValue=" + column.hasDefaultValue()
                     + " column.defaultValue=" + column.defaultValue()
-                    + " converted-default-value=" + convetedDefault
-                    + " converter=" + customConverterRegistry.getValueConverter(table.id(), column)
-                    + " orelse converter=" + ValueConverter.passthrough()
+                    + " column.type=" + fieldBuilder.type()
+                    + " default.type=" + column.defaultValue().getClass().getName()
+                    + " isinstance=" + Byte.isinstance(column.defaultValue())
             );
 
             // if the default value is provided
