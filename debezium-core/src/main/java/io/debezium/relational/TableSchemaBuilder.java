@@ -376,7 +376,7 @@ public class TableSchemaBuilder {
                     + " column.defaultValue=" + column.defaultValue()
                     + " column.type=" + fieldBuilder.type()
                     + " default.type=" + column.defaultValue().getClass().getName()
-                    + " isinstance=" + Byte.isInstance(column.defaultValue())
+                    + " isinstance=" + Byte.class.isInstance(column.defaultValue())
             );
 
             // if the default value is provided
