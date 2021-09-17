@@ -32,7 +32,7 @@ import io.debezium.spi.converter.RelationalColumn;
  */
 @ThreadSafe
 public class CustomConverterRegistry {
-    private static final Logger LOGGER = LoggerFactory.getLogger(CustomConverterRegistry.class)
+    private static final Logger LOGGER = LoggerFactory.getLogger(CustomConverterRegistry.class);
 
     @Immutable
     private final List<CustomConverter<SchemaBuilder, ConvertedField>> converters;
