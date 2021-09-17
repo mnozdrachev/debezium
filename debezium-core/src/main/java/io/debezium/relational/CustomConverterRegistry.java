@@ -57,10 +57,14 @@ public class CustomConverterRegistry {
     public synchronized Optional<SchemaBuilder> registerConverterFor(TableId table, Column column) {
         final String fullColumnName = fullColumnName(table, column);
 
+        System.out.println(">>>>>>"
+                + " n_converters=" + converters.size()
+            );
         for (CustomConverter<SchemaBuilder, ConvertedField> converter : converters) {
             System.out.println(">>>>>>"
                     + " converter=" + converter
-                    + " type=" + converter.getClass().getName());
+                    + " type=" + converter.getClass().getName()
+                );
             AtomicReference<ConverterDefinition<SchemaBuilder>> definition = new AtomicReference<>();
             converter.converterFor(new RelationalColumn() {
 
