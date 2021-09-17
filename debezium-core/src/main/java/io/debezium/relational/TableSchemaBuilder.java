@@ -386,7 +386,7 @@ public class TableSchemaBuilder {
                         + " default-type=" + def.getClass().getName()
                         + " converted-default-type=" + def2.getClass().getName()
                         + " isinstance=" + Byte.class.isInstance(column.defaultValue())
-                        + " test=" + test
+                        + " test=" + test.getClass().getName()
                 );
             } else {
                 LOGGER.info(">>> addFiled:"
