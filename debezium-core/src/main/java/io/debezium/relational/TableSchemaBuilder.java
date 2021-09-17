@@ -365,6 +365,7 @@ public class TableSchemaBuilder {
             + " defValueConverter=" + valueConverterProvider.schemaBuilder(column)
             + " actualValueConverter=" + fieldBuilder
         );
+        throw new ConnectException("EXCEPTION");
 
         if (fieldBuilder != null) {
             if (mapper != null) {
