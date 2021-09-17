@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.concurrent.atomic.AtomicReference;
+import org.slf4j.LoggerFactory;
 
 import org.apache.kafka.connect.data.SchemaBuilder;
 
@@ -31,6 +32,7 @@ import io.debezium.spi.converter.RelationalColumn;
  */
 @ThreadSafe
 public class CustomConverterRegistry {
+    private static final Logger LOGGER = LoggerFactory.getLogger(CustomConverterRegistry.class)
 
     @Immutable
     private final List<CustomConverter<SchemaBuilder, ConvertedField>> converters;
@@ -57,11 +59,12 @@ public class CustomConverterRegistry {
     public synchronized Optional<SchemaBuilder> registerConverterFor(TableId table, Column column) {
         final String fullColumnName = fullColumnName(table, column);
 
-        System.out.println(">>>>>>"
+        LOGGER.info(">>>>>>"
+                + " fullColumnName=" + fullColumnName
                 + " n_converters=" + converters.size()
             );
         for (CustomConverter<SchemaBuilder, ConvertedField> converter : converters) {
-            System.out.println(">>>>>>"
+            LOGGER.info(">>>>>>"
                     + " converter=" + converter
                     + " type=" + converter.getClass().getName()
                 );
