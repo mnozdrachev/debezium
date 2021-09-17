@@ -126,6 +126,7 @@ public abstract class RelationalDatabaseSchema implements DatabaseSchema<TableId
      * Builds up the CDC event schema for the given table and stores it in this schema.
      */
     protected void buildAndRegisterSchema(Table table) {
+        LOG.info(">>>>>>>> is " + table.id() + " included? = " + tableFilter.isIncluded(table.id()));
         if (tableFilter.isIncluded(table.id())) {
             TableSchema schema = schemaBuilder.create(schemaPrefix, getEnvelopeSchemaName(table), table, columnFilter, columnMappers, customKeysMapper);
             LOG.info(">>>>>>>"
