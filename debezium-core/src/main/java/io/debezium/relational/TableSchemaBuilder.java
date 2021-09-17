@@ -370,6 +370,7 @@ public class TableSchemaBuilder {
             }
 
             if (column.hasDefaultValue() && column.defaultValue() != null) {
+                Object test = 1;
                 Object def = column.defaultValue();
                 Object def2 = customConverterRegistry
                     .getValueConverter(table.id(), column)
@@ -385,6 +386,7 @@ public class TableSchemaBuilder {
                         + " default-type=" + def.getClass().getName()
                         + " converted-default-type=" + def2.getClass().getName()
                         + " isinstance=" + Byte.class.isInstance(column.defaultValue())
+                        + " test=" + test
                 );
             } else {
                 LOGGER.info(">>> addFiled:"
