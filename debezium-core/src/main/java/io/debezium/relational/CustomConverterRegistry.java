@@ -58,6 +58,9 @@ public class CustomConverterRegistry {
         final String fullColumnName = fullColumnName(table, column);
 
         for (CustomConverter<SchemaBuilder, ConvertedField> converter : converters) {
+            System.out.println(">>>>>>"
+                    + " converter=" + converter
+                    + " type=" + converter.getClass().getName());
             AtomicReference<ConverterDefinition<SchemaBuilder>> definition = new AtomicReference<>();
             converter.converterFor(new RelationalColumn() {
 
