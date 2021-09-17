@@ -360,6 +360,12 @@ public class TableSchemaBuilder {
         final SchemaBuilder fieldBuilder = customConverterRegistry.registerConverterFor(table.id(), column)
                 .orElse(valueConverterProvider.schemaBuilder(column));
 
+        LOGGER.info(">>>"
+            + " valueConverter=" + customConverterRegistry.registerConverterFor(table.id(), column)
+            + " defValueConverter=" + valueConverterProvider.schemaBuilder(column)
+            + " actualValueConverter=" + fieldBuilder
+        );
+
         if (fieldBuilder != null) {
             if (mapper != null) {
                 // Let the mapper add properties to the schema ...
