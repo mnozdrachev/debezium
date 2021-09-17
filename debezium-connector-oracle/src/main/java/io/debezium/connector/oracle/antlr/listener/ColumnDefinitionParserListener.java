@@ -73,6 +73,9 @@ public class ColumnDefinitionParserListener extends BaseParserListener {
     // todo use dataTypeResolver instead
     private void resolveColumnDataType(PlSqlParser.Column_definitionContext ctx) {
         columnEditor.name(getColumnName(ctx.column_name()));
+        System.err.println(">>>>>>> columnEditor=" + columnEditor);
+        System.err.println(">>>>>>> columnEditor.class=" + columnEditor.getClass());
+        System.err.println(">>>>>>> columnEditor.defaultValue=" + columnEditor.defaultValue);
 
         if (ctx.datatype() == null) {
             if (ctx.type_name() != null && "\"MDSYS\".\"SDO_GEOMETRY\"".equalsIgnoreCase(ctx.type_name().getText())) {
